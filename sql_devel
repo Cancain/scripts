@@ -1,0 +1,1 @@
+mysql -h mariadb1.playipp.com -u tomeri -p -D playipp_dev --ssl
