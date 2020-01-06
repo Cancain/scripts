@@ -2,8 +2,9 @@ mkdir src &&
 mkdir build &&
 cd src &&
 printf "#include <iostream>\n\nint main(){\n    return 0; \n}" >> main.cpp  &&
-printf "g++ main.cpp -o ../build/main && ../build/main" >> run && 
-printf "g++ main.cpp -o ../build/main" >> build &&
-chmod +x run
-chmod +x build
+cd ../ &&
+printf "g++ src/main.cpp -o build/main && ./build/main" >> Run && 
+printf "g++ src/main.cpp -o build/main" >> Build &&
+chmod +x Run
+chmod +x Build
 
