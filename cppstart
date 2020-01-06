@@ -3,8 +3,8 @@ mkdir build &&
 cd src &&
 printf "#include <iostream>\n\nint main(){\n    return 0; \n}" >> main.cpp  &&
 cd ../ &&
-printf "g++ src/main.cpp -o build/main && ./build/main" >> Run && 
-printf "g++ src/main.cpp -o build/main" >> Build &&
+printf "g++ -Wall -std=c++17 src/main.cpp -o build/main && ./build/main" >> Run && 
+printf "g++ -Wall -std=c++17 src/main.cpp -o build/main" >> Build &&
 chmod +x Run
 chmod +x Build
 
