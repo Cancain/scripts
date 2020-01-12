@@ -1,7 +1,6 @@
 #! /bin/python3
 
 import os
-from shutil import copyfile
 
 current_folder = os.getcwd()
 main_path = "%s/src/main.cpp" % current_folder

@@ -7,6 +7,7 @@ def get_cpp_files():
    src_folder = "%s/src" % current_folder
    files = os.listdir(src_folder)                    
    cpp_files = [fi for fi in files if fi.endswith(".cpp")]    
+
    return cpp_files
 
 def make_files_string():
