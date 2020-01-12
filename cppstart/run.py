@@ -1,5 +1,5 @@
 #! /bin/python3
-import os;
+import os
 
 current_folder = os.getcwd()
 
