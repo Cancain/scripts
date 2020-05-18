@@ -20,7 +20,7 @@ def make_files_string():
 
 def compile_files():
     files = make_files_string() 
-    os.system("g++ -Wall -std=c++17 " + files + " -o build/main")
+    os.system("g++ -g -Wall -std=c++17 " + files + " -o build/main")
 
 def run():
     os.system("./build/main")
