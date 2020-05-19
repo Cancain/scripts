@@ -11,7 +11,6 @@ def make_folder(folder_name):
     try:
         os.mkdir(full_folder_path)
     except:
-        print("mkdir failed: %s" % full_folder_path)
         sys.exit("mkdir failed: %s" % full_folder_path )
     print("folder %s created" % folder_name)
 
