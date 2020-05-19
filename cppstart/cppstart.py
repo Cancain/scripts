@@ -1,6 +1,7 @@
 #! /bin/python3
 
 import os
+import sys
 
 current_folder = os.getcwd()
 main_path = "%s/src/main.cpp" % current_folder
@@ -11,7 +12,8 @@ def make_folder(folder_name):
         os.mkdir(full_folder_path)
     except:
         print("mkdir failed: %s" % full_folder_path)
-    else: print("folder %s created" % folder_name)
+        sys.exit("mkdir failed: %s" % full_folder_path )
+    print("folder %s created" % folder_name)
 
     
 def create_cpp_main():
