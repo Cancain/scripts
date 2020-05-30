@@ -27,11 +27,15 @@ def create_executables():
     os.system("cp ~/scripts/cppstart/run.py %s" %current_folder)
     os.system("cp ~/scripts/cppstart/debug.py %s" %current_folder)
 
+def copy_vscode_config():
+    os.system("cp ~/scripts/cppstart/.vscode %s -r" %current_folder)
+
 def main():
     make_folder("src")
     make_folder("build")
     create_cpp_main()
     create_executables()
+    copy_vscode_config()
 
 if __name__ == "__main__":
     main()
