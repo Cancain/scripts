@@ -1,0 +1,3 @@
+git clone git@github.com:Cancain/cmake_blueprint.git .
+rm -rf .git
+mkdir build
