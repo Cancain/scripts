@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# Arguments
+if [ "$*" == "--help" ] || [ "$*" == "-h" ]; then
+echo "Usage: $(basename "$(test -L "$0" && readlink "$0" || echo "$0")") [options]
+
+-c, --clear           clear all node moduels directories and reinstall them
+-h, --help            show this help"
+exit 0
+fi
+
+# check if in project root
+if [ ! -d .git ]; then
+    echo This is not a git project root.
+    exit 1
+fi
+
+# Set up empty package collection
+packageInstalledYarn=()
+packageInstalledNPM=()
+
+projectRoot=$(pwd)
+allModuels=$(find * -maxdepth 2 -name "package.json")
+
+for package in $allModuels; do
+    modulePath=$(dirname $(readlink -f "$package"))
+    cd $modulePath
+    if [ "$*" == "--clear" ] || [ "$*" == "-c" ] && [ -d node_modules ]; then
+        echo -e "\e[1mClearing '$(dirname $package)' moduels...\e[0m"
+        rm -rf node_modules
+        echo -e "\e[0mModuels cleared\e[0m"
+    fi
+    echo -e "\e[1mInstalling '$(dirname $package)' moduels...\e[0m"
+    if [ -f package-lock.json ]; then
+        echo -e "\e[91;7m WARNING \e[0m \e[91mpackage-lock have been discoverd using npm instea of yarn...\e[0m"
+        echo -e "\e[1mnpm install v$(npm --v)\e[0m"
+        npm install
+        packageInstalledNPM=("${packageInstalledNPM[@]}" $(dirname $package))
+    else
+        yarn
+        packageInstalledYarn=("${packageInstalledYarn[@]}" $(dirname $package))
+    fi
+    echo -e "\e[32mModules in '$(dirname $package)' have been installed\e[0m"
+    cd $projectRoot
+done
+
+echo -e "\nAll packages have been updated."
+for p in "$packageInstalledNPM"; do echo -e "\e[93;7m WARN \e[0m packages in '$(basename $p)' used npm instead of yarn.\e[0m"; done
+echo ""

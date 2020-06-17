@@ -1,0 +1,2 @@
+#! /bin/bash
+adb reverse tcp:8082 tcp8082
